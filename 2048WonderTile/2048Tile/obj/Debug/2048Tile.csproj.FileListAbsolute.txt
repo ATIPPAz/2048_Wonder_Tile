@@ -1,0 +1,10 @@
+D:\MyProJect\2048WonderTile\2048Tile\bin\Debug\2048Tile.exe.config
+D:\MyProJect\2048WonderTile\2048Tile\bin\Debug\2048Tile.exe
+D:\MyProJect\2048WonderTile\2048Tile\bin\Debug\2048Tile.pdb
+D:\MyProJect\2048WonderTile\2048Tile\obj\Debug\2048Tile.csprojAssemblyReference.cache
+D:\MyProJect\2048WonderTile\2048Tile\obj\Debug\_2048Tile.WonderTile.resources
+D:\MyProJect\2048WonderTile\2048Tile\obj\Debug\_2048Tile.Properties.Resources.resources
+D:\MyProJect\2048WonderTile\2048Tile\obj\Debug\2048Tile.csproj.GenerateResource.cache
+D:\MyProJect\2048WonderTile\2048Tile\obj\Debug\2048Tile.csproj.CoreCompileInputs.cache
+D:\MyProJect\2048WonderTile\2048Tile\obj\Debug\2048Tile.exe
+D:\MyProJect\2048WonderTile\2048Tile\obj\Debug\2048Tile.pdb
