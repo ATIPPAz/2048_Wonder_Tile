@@ -129,11 +129,28 @@ namespace _2048Tile
         private void MoveRight()
         {
             MessageBox.Show("กำลังพัฒนา");
+            for (int i = 1; i <= 16; i++)
+            {
+                Tile[i] = (Label)this.Controls.Find("tile" + i, true)[0];
+                Tile[i].Text = "0";
+                ChangeBgColor();
+            }
+            NewGame.Visible = true;
+            return;
         }
 
         private void MoveLeft()
         {
             MessageBox.Show("กำลังพัฒนา");
+            for (int i = 1; i <= 16; i++)
+            {
+                Tile[i] = (Label)this.Controls.Find("tile" + i, true)[0];
+                Tile[i].Text = "0";
+                ChangeBgColor();
+            }
+            NewGame.Visible = true;
+
+            return;
         }
 
         private void MoveDown()
