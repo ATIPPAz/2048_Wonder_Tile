@@ -150,7 +150,7 @@ namespace _2048Tile
             /*for (int j = 1; j < 12; j += 4)
             {
                 for (int i = j; i < j + 4; i++)
-                {*/
+                {sacdadwdafewfsfsefs*/
                     for (int j = 13; j < 16; j ++)
             {
                 for (int i = j; i > j - 4; i-=4)
