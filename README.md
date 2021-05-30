@@ -1,3 +1,3 @@
-# Project_Year1
-2048Tile By C#
+# 2048Tile By C#
+this Is my First Project
 เกม 2048 ด้วยภาษา c#  
