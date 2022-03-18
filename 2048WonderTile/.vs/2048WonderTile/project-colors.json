@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "f2d5ae76-849b-4245-a8a2-5daa4a389733": {
+      "ProjectGuid": "f2d5ae76-849b-4245-a8a2-5daa4a389733",
+      "DisplayName": "2048Tile",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

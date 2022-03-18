@@ -8,5 +8,6 @@ namespace _2048Tile.Class
 {
     internal class GameLogic
     {
+
     }
 }
