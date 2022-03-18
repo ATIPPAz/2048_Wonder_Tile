@@ -58,13 +58,44 @@ namespace _2048Tile
             board.start();
             for (int i = 1; i <= 16; i++)
             {
-                // test 3 case
-                //if (i == 13 || i == 14 || i == 15 || i == 16 || i == 5 || i == 6 || i == 7 || i == 8)
-                //if (i >= 5)
-                //if (i >= 1 && i <= 4 || i >= 9 && i <= 12)
-                //if (i == 13 || i == 9 || i == 5)
-                /*if (i == 16 || i == 13)*/
-                if (i == 6 || i == 7 || i == 10 || i == 11)
+
+                if (i == 13)
+                {
+                    Tile[i] = (Label)this.Controls.Find("tile" + i, true)[0];
+                    Tile[i].Text = "2";
+                }
+                else if (i == 14)
+                {
+                    Tile[i] = (Label)this.Controls.Find("tile" + i, true)[0];
+                    Tile[i].Text = "2";
+                }
+                else if (i == 15)
+                {
+                    Tile[i] = (Label)this.Controls.Find("tile" + i, true)[0];
+                    Tile[i].Text = "8";
+                }
+                else if (i == 16)
+                {
+                    Tile[i] = (Label)this.Controls.Find("tile" + i, true)[0];
+                    Tile[i].Text = "4";
+                }
+                else if (i == 9)
+                {
+                    Tile[i] = (Label)this.Controls.Find("tile" + i, true)[0];
+                    Tile[i].Text = "4";
+
+                }
+                else if (i == 10)
+                {
+                    Tile[i] = (Label)this.Controls.Find("tile" + i, true)[0];
+                    Tile[i].Text = "8";
+                }
+                else if (i == 11)
+                {
+                    Tile[i] = (Label)this.Controls.Find("tile" + i, true)[0];
+                    Tile[i].Text = "2";
+                }
+                else if (i == 12)
                 {
                     Tile[i] = (Label)this.Controls.Find("tile" + i, true)[0];
                     Tile[i].Text = "2";
@@ -145,7 +176,26 @@ namespace _2048Tile
             bTileMove = false;
             GameOver();
             Right();
-
+            for (int j = 4; j <= 16; j += 4)
+            {
+                for (int i = j; i > j - 3; i--)
+                {
+                    if (Tile[i].Text == Tile[i - 1].Text && Tile[i].Text != "")
+                    {
+                        nCurrentTile = Convert.ToInt32(Tile[i].Text);
+                        nNextTile = Convert.ToInt32(Tile[i - 1].Text);
+                        nCurrentTile += nNextTile;
+                        Tile[i - 1].Text = nCurrentTile.ToString();
+                        Tile[i].Text = "";
+                        ChangeBgColor();
+                        nScore += nCurrentTile;
+                        Score.Text = nScore.ToString();
+                        bTileMove = true;
+                    }
+                }
+            }
+            Right();
+            RandomTile();
         }
         void Right()
         {
@@ -161,6 +211,7 @@ namespace _2048Tile
                             Tile[j + 1].Text = Tile[j].Text;
                             Tile[j].Text = "";
                             bTileMove = true;
+
                             j += 1;
                         }
                         else
@@ -177,7 +228,26 @@ namespace _2048Tile
             bTileMove = false;
             GameOver();
             Left();
-            //Left();
+            for (int j = 1; j <= 13; j += 4)
+            {
+                for (int i = j; i < j + 3; i++)
+                {
+                    if (Tile[i].Text == Tile[i + 1].Text && Tile[i].Text != "")
+                    {
+                        nCurrentTile = Convert.ToInt32(Tile[i].Text);
+                        nNextTile = Convert.ToInt32(Tile[i + 1].Text);
+                        nCurrentTile += nNextTile;
+                        Tile[i].Text = nCurrentTile.ToString();
+                        Tile[i + 1].Text = "";
+                        ChangeBgColor();
+                        nScore += nCurrentTile;
+                        Score.Text = nScore.ToString();
+                        bTileMove = true;
+                    }
+                }
+            }
+            Left();
+            RandomTile();
         }
         void Left()
         {
@@ -211,36 +281,29 @@ namespace _2048Tile
             bTileMove = false;
             GameOver();
             Down();
-            /*for (int j = 1; j < 12; j += 4)
+            for (int j = 13; j <= 16; j++)
             {
-                for (int i = j; i < j + 4; i++)
-                {sacdadwdafewfsfsefs
-            */
-            /*for (int j = 13; j < 4; j -= 4)
-            {
-                for (int i = j; i < j + 4; i++)
+                for (int i = j; i >= j - 8; i -= 4)
                 {
-                    if (Tile[i].Text == Tile[i - 4].Text)
+                    if (Tile[i].Text == Tile[i - 4].Text && Tile[i].Text != "")
                     {
-                        if (Tile[i].Text != "")
-                        {
-                            nCurrentTile = Convert.ToInt32(Tile[i].Text);
-                            nNextTile = Convert.ToInt32(Tile[i - 4].Text);
-                            nCurrentTile += nNextTile;
-                            Tile[i].Text = nCurrentTile.ToString();
-                            Tile[i - 4].Text = "";
-                            ChangeBgColor();
-                            nScore += nCurrentTile;
-                            Score.Text = nScore.ToString();
-                            bTileMove = true;
-                        }
+                        nCurrentTile = Convert.ToInt32(Tile[i - 4].Text);
+                        nNextTile = Convert.ToInt32(Tile[i].Text);
+                        nCurrentTile += nNextTile;
+                        Tile[i - 4].Text = nCurrentTile.ToString();
+                        Tile[i].Text = "";
+                        ChangeBgColor();
+                        nScore += nCurrentTile;
+                        Score.Text = nScore.ToString();
+                        bTileMove = true;
                     }
+
                 }
             }
             Down();
-            RandomTile();*/
-
+            RandomTile();
         }
+
         private void Down()
         {
             for (int i = 13; i <= 16; i++)
@@ -301,7 +364,7 @@ namespace _2048Tile
             GameOver();
             Up();
             //คำนวณการบวก 
-            /*for (int j = 1; j < 12; j += 4)
+            for (int j = 1; j < 12; j += 4)
             {
                 for (int i = j; i < j + 4; i++)
                 {
@@ -318,9 +381,9 @@ namespace _2048Tile
                         bTileMove = true;
                     }
                 }
-            }*/
-            /*Up();
-            RandomTile();*/
+            }
+            Up();
+            RandomTile();
         }
 
 
@@ -328,23 +391,44 @@ namespace _2048Tile
         void GameOver()
         {
             bGameOver = true;
-            for (int u = 1; u <= 9; u += 4)
+            for (int i = 1; i <= 16; i++)
             {
-                for (int i = u; i <= u + 2; i++)
-                {
-                    if (Tile[i].Text == Tile[i + 1].Text || Tile[i].Text == Tile[i + 4].Text)
-                    {
-                        bGameOver = false;
-                    }
-                }
-                if (Tile[u + 3].Text == Tile[u + 7].Text)
+                if (Tile[i].Text == "")
                 {
                     bGameOver = false;
                 }
+
             }
-            if (bGameOver == true)
+
+            if (bGameOver)
             {
-                MessageBox.Show("GameOver");
+                //เเนวตั้ง
+                Console.WriteLine("nospace");
+                for (int i = 1; i <= 4; i++)
+                {
+                    for (int j = i; j <= 12; j += 4)
+                    {
+                        if (Tile[j].Text == Tile[j + 4].Text)
+                        {
+                            bGameOver = false;
+                        }
+                    }
+                }
+                if (bGameOver)
+                {
+                    Console.WriteLine("nocol");
+                    for (int i = 1; i <= 13; i += 4)
+                    {
+                        for (int j = i; j < i + 3; j++)
+                        {
+                            if (Tile[j].Text == Tile[j + 1].Text)
+                            {
+                                bGameOver = false;
+                            }
+                        }
+                    }
+                }
+
                 /*StreamWriter writer = new StreamWriter(@"DataFile/Highscore.txt");
                 if (nScore > Convert.ToInt32(Best))
                 {
@@ -358,7 +442,11 @@ namespace _2048Tile
                 string outp = Encipher(name, 13);
                 writer1.Write(outp);
                 writer.Close();*/
-                return;
+                /*return;*/
+            }
+            if (bGameOver)
+            {
+                MessageBox.Show("GameOver");
             }
         }
         void ChangeBgColor()
@@ -383,7 +471,7 @@ namespace _2048Tile
                 {
                     Tile[i].ForeColor = Color.FromArgb(61, 57, 54);
                     Tile[i].BackColor = Color.FromArgb(204, 184, 163);
-                    Tile[i].Font = new Font("ZoodHardSell2", 80, FontStyle.Bold);
+                    Tile[i].Font = new Font("ZoodHardSell2", 90, FontStyle.Bold);
                     Tile[i].Text = "4";
                 }
                 if (Tile[i].Text == "8")
