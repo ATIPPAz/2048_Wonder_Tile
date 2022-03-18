@@ -101,6 +101,7 @@ namespace _2048Tile
                     Tile[i].Text = "2";
                 }
             }
+
             nTime = 0;
             GameTime.Start();
             /* nValue = RandomValue();
