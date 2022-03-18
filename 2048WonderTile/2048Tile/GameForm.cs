@@ -61,7 +61,10 @@ namespace _2048Tile
                 // test 3 case
                 //if (i == 13 || i == 14 || i == 15 || i == 16 || i == 5 || i == 6 || i == 7 || i == 8)
                 //if (i >= 5)
-                if (i >= 1 && i <= 4 || i >= 9 && i <= 12)
+                //if (i >= 1 && i <= 4 || i >= 9 && i <= 12)
+                //if (i == 13 || i == 9 || i == 5)
+                /*if (i == 16 || i == 13)*/
+                if (i == 6 || i == 7 || i == 10 || i == 11)
                 {
                     Tile[i] = (Label)this.Controls.Find("tile" + i, true)[0];
                     Tile[i].Text = "2";
@@ -139,29 +142,68 @@ namespace _2048Tile
         }
         private void MoveRight()
         {
-            MessageBox.Show("กำลังพัฒนา");
-            for (int i = 1; i <= 16; i++)
-            {
-                Tile[i] = (Label)this.Controls.Find("tile" + i, true)[0];
-                Tile[i].Text = "0";
-                ChangeBgColor();
-            }
-            NewGame.Visible = true;
-            return;
-        }
+            bTileMove = false;
+            GameOver();
+            Right();
 
+        }
+        void Right()
+        {
+            for (int i = 4; i <= 16; i += 4)
+            {
+                for (int j = i; j >= i - 3; j--)
+                {
+                    int temp = j;
+                    while (i > j)
+                    {
+                        if (Tile[j].Text != "" && Tile[j + 1].Text == "")
+                        {
+                            Tile[j + 1].Text = Tile[j].Text;
+                            Tile[j].Text = "";
+                            bTileMove = true;
+                            j += 1;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    j = temp;
+                }
+            }
+        }
         private void MoveLeft()
         {
-            MessageBox.Show("กำลังพัฒนา");
-            for (int i = 1; i <= 16; i++)
+            bTileMove = false;
+            GameOver();
+            Left();
+            //Left();
+        }
+        void Left()
+        {
+            for (int i = 1; i <= 13; i += 4)
             {
-                Tile[i] = (Label)this.Controls.Find("tile" + i, true)[0];
-                Tile[i].Text = "0";
-                ChangeBgColor();
+                for (int j = i; j < i + 4; j++)
+                {
+                    int temp = j;
+                    while (j - i >= 1)
+                    {
+                        Console.WriteLine(i + " : " + j);
+                        if (Tile[j].Text != "" && Tile[j - 1].Text == "")
+                        {
+                            Tile[j - 1].Text = Tile[j].Text;
+                            Tile[j].Text = "";
+                            bTileMove = true;
+                            j -= 1;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    j = temp;
+                }
             }
-            NewGame.Visible = true;
-
-            return;
         }
 
         private void MoveDown()
@@ -213,8 +255,12 @@ namespace _2048Tile
                             Tile[j + 4].Text = Tile[j].Text;
                             Tile[j].Text = "";
                             bTileMove = true;
+                            j += 4;
                         }
-                        j += 4;
+                        else
+                        {
+                            j = 16;
+                        }
                     }
                     j = temp;
                 }
@@ -235,8 +281,13 @@ namespace _2048Tile
                             Tile[j - 4].Text = Tile[j].Text;
                             Tile[j].Text = "";
                             bTileMove = true;
+                            j -= 4;
                         }
-                        j -= 4;
+                        else
+                        {
+                            j = 1;
+                        }
+
                     }
                     j = temp;
                 }
