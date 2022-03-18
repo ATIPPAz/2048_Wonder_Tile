@@ -58,6 +58,33 @@ namespace _2048Tile
             board.start();
             for (int i = 1; i <= 16; i++)
             {
+                // test 3 case
+                //if (i == 13 || i == 14 || i == 15 || i == 16 || i == 5 || i == 6 || i == 7 || i == 8)
+                //if (i >= 5)
+                //if (i >= 1 && i <= 4 || i >= 9 && i <= 12)
+                //if (i == 13 || i == 9 || i == 5)
+                /*if (i == 16 || i == 13)*/
+                if (i == 6 || i == 7 || i == 10 || i == 11)
+                {
+                    Tile[i] = (Label)this.Controls.Find("tile" + i, true)[0];
+                    Tile[i].Text = "2";
+                }
+            }
+            nTime = 0;
+            GameTime.Start();
+            /* nValue = RandomValue();
+             nPosition = RandomPosition();
+             Tile[nPosition].Text = nValue.ToString();*/
+            ChangeBgColor();
+            NewGame.Visible = false;
+        }
+        void save()
+        {
+            //ให้กระเบื้องทุกอันมีค่าเป็น 0 (" ว่างเปล่า ")
+            Board board = new Board();
+            board.start();
+            for (int i = 1; i <= 16; i++)
+            {
                 Tile[i] = (Label)this.Controls.Find("tile" + i, true)[0];
                 Tile[i].Text = "2";
             }
@@ -69,7 +96,6 @@ namespace _2048Tile
             ChangeBgColor();
             NewGame.Visible = false;
         }
-
         private void GameTimeEllasp(object sender, EventArgs e)
         {
             nTime++;
@@ -116,29 +142,68 @@ namespace _2048Tile
         }
         private void MoveRight()
         {
-            MessageBox.Show("กำลังพัฒนา");
-            for (int i = 1; i <= 16; i++)
-            {
-                Tile[i] = (Label)this.Controls.Find("tile" + i, true)[0];
-                Tile[i].Text = "0";
-                ChangeBgColor();
-            }
-            NewGame.Visible = true;
-            return;
-        }
+            bTileMove = false;
+            GameOver();
+            Right();
 
+        }
+        void Right()
+        {
+            for (int i = 4; i <= 16; i += 4)
+            {
+                for (int j = i; j >= i - 3; j--)
+                {
+                    int temp = j;
+                    while (i > j)
+                    {
+                        if (Tile[j].Text != "" && Tile[j + 1].Text == "")
+                        {
+                            Tile[j + 1].Text = Tile[j].Text;
+                            Tile[j].Text = "";
+                            bTileMove = true;
+                            j += 1;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    j = temp;
+                }
+            }
+        }
         private void MoveLeft()
         {
-            MessageBox.Show("กำลังพัฒนา");
-            for (int i = 1; i <= 16; i++)
+            bTileMove = false;
+            GameOver();
+            Left();
+            //Left();
+        }
+        void Left()
+        {
+            for (int i = 1; i <= 13; i += 4)
             {
-                Tile[i] = (Label)this.Controls.Find("tile" + i, true)[0];
-                Tile[i].Text = "0";
-                ChangeBgColor();
+                for (int j = i; j < i + 4; j++)
+                {
+                    int temp = j;
+                    while (j - i >= 1)
+                    {
+                        Console.WriteLine(i + " : " + j);
+                        if (Tile[j].Text != "" && Tile[j - 1].Text == "")
+                        {
+                            Tile[j - 1].Text = Tile[j].Text;
+                            Tile[j].Text = "";
+                            bTileMove = true;
+                            j -= 1;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    j = temp;
+                }
             }
-            NewGame.Visible = true;
-
-            return;
         }
 
         private void MoveDown()
@@ -151,7 +216,7 @@ namespace _2048Tile
                 for (int i = j; i < j + 4; i++)
                 {sacdadwdafewfsfsefs
             */
-            for (int j = 13; j < 4; j -= 4)
+            /*for (int j = 13; j < 4; j -= 4)
             {
                 for (int i = j; i < j + 4; i++)
                 {
@@ -173,49 +238,62 @@ namespace _2048Tile
                 }
             }
             Down();
-            RandomTile();
+            RandomTile();*/
 
         }
-
-        private void Up()
+        private void Down()
         {
             for (int i = 13; i <= 16; i++)
             {
-                for (int j = i; j > 4; j -= 4)
+                for (int j = i; j >= 1; j -= 4)
                 {
-                    if (Tile[j].Text != "")
+                    int temp = j;
+                    while (j + 4 <= 16)
                     {
-                        if (Tile[j - 4].Text == "")
-                        {
-                            Tile[j - 4].Text = Tile[j].Text;
-                            Tile[j].Text = "";
-                            bTileMove = true;
-                            ChangeBgColor();
-                        }
-                    }
-                }
-            }
-        }
-
-        private void Down()
-        {
-            for (int i = 1; i <= 4; i++)
-            {
-                for (int j = i; j < 13; j += 4)
-                {
-                    if (Tile[j].Text != "")
-                    {
-                        if (Tile[j + 4].Text == "")
+                        if (Tile[j].Text != "" && Tile[j + 4].Text == "")
                         {
                             Tile[j + 4].Text = Tile[j].Text;
                             Tile[j].Text = "";
                             bTileMove = true;
-                            ChangeBgColor();
+                            j += 4;
+                        }
+                        else
+                        {
+                            j = 16;
                         }
                     }
+                    j = temp;
                 }
             }
         }
+
+        private void Up()
+        {
+            for (int i = 5; i < 9; i++)
+            {
+                for (int j = i; j <= 16; j += 4)
+                {
+                    int temp = j;
+                    while (j - 4 >= 1)
+                    {
+                        if (Tile[j].Text != "" && Tile[j - 4].Text == "")
+                        {
+                            Tile[j - 4].Text = Tile[j].Text;
+                            Tile[j].Text = "";
+                            bTileMove = true;
+                            j -= 4;
+                        }
+                        else
+                        {
+                            j = 1;
+                        }
+
+                    }
+                    j = temp;
+                }
+            }
+        }
+
 
         private void MoveUp()
         {
@@ -223,29 +301,26 @@ namespace _2048Tile
             GameOver();
             Up();
             //คำนวณการบวก 
-            for (int j = 1; j < 12; j += 4)
+            /*for (int j = 1; j < 12; j += 4)
             {
                 for (int i = j; i < j + 4; i++)
                 {
-                    if (Tile[i].Text == Tile[i + 4].Text)
+                    if (Tile[i].Text == Tile[i + 4].Text && Tile[i].Text != "")
                     {
-                        if (Tile[i].Text != "")
-                        {
-                            nCurrentTile = Convert.ToInt32(Tile[i].Text);
-                            nNextTile = Convert.ToInt32(Tile[i + 4].Text);
-                            nCurrentTile += nNextTile;
-                            Tile[i].Text = nCurrentTile.ToString();
-                            Tile[i + 4].Text = "";
-                            ChangeBgColor();
-                            nScore += nCurrentTile;
-                            Score.Text = nScore.ToString();
-                            bTileMove = true;
-                        }
+                        nCurrentTile = Convert.ToInt32(Tile[i].Text);
+                        nNextTile = Convert.ToInt32(Tile[i + 4].Text);
+                        nCurrentTile += nNextTile;
+                        Tile[i].Text = nCurrentTile.ToString();
+                        Tile[i + 4].Text = "";
+                        ChangeBgColor();
+                        nScore += nCurrentTile;
+                        Score.Text = nScore.ToString();
+                        bTileMove = true;
                     }
                 }
-            }
-            Up();
-            RandomTile();
+            }*/
+            /*Up();
+            RandomTile();*/
         }
 
 
