@@ -285,7 +285,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(665, 69);
+            this.label2.Location = new System.Drawing.Point(584, 48);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(144, 39);
             this.label2.TabIndex = 1;
@@ -294,7 +294,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(608, 29);
+            this.label3.Location = new System.Drawing.Point(501, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(228, 39);
             this.label3.TabIndex = 1;
@@ -303,7 +303,7 @@
             // Score
             // 
             this.Score.AutoSize = true;
-            this.Score.Location = new System.Drawing.Point(756, 69);
+            this.Score.Location = new System.Drawing.Point(734, 48);
             this.Score.Name = "Score";
             this.Score.Size = new System.Drawing.Size(37, 39);
             this.Score.TabIndex = 1;
@@ -312,7 +312,7 @@
             // BestScore
             // 
             this.BestScore.AutoSize = true;
-            this.BestScore.Location = new System.Drawing.Point(756, 29);
+            this.BestScore.Location = new System.Drawing.Point(735, 9);
             this.BestScore.Name = "BestScore";
             this.BestScore.Size = new System.Drawing.Size(37, 39);
             this.BestScore.TabIndex = 1;
@@ -321,7 +321,7 @@
             // TimeShow
             // 
             this.TimeShow.AutoSize = true;
-            this.TimeShow.Location = new System.Drawing.Point(456, 96);
+            this.TimeShow.Location = new System.Drawing.Point(501, 87);
             this.TimeShow.Name = "TimeShow";
             this.TimeShow.Size = new System.Drawing.Size(270, 39);
             this.TimeShow.TabIndex = 1;
