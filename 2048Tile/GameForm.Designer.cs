@@ -57,6 +57,7 @@
             this.BestScore = new System.Windows.Forms.Label();
             this.TimeShow = new System.Windows.Forms.Label();
             this.GameTime = new System.Windows.Forms.Timer(this.components);
+            this.buttonRestart = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ExitBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MinimumBtn)).BeginInit();
             this.SuspendLayout();
@@ -332,12 +333,29 @@
             this.GameTime.Interval = 1000;
             this.GameTime.Tick += new System.EventHandler(this.GameTimeEllasp);
             // 
+            // buttonRestart
+            // 
+            this.buttonRestart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(57)))), ((int)(((byte)(54)))));
+            this.buttonRestart.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonRestart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonRestart.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.buttonRestart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(248)))), ((int)(((byte)(238)))));
+            this.buttonRestart.Location = new System.Drawing.Point(294, 344);
+            this.buttonRestart.Name = "buttonRestart";
+            this.buttonRestart.Size = new System.Drawing.Size(226, 66);
+            this.buttonRestart.TabIndex = 3;
+            this.buttonRestart.Text = "Restart";
+            this.buttonRestart.UseVisualStyleBackColor = false;
+            this.buttonRestart.Click += new System.EventHandler(this.NewGame_Click);
+            this.buttonRestart.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.KeyIsDown);
+            // 
             // WonderTile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(21F, 39F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(248)))), ((int)(((byte)(238)))));
             this.ClientSize = new System.Drawing.Size(850, 650);
+            this.Controls.Add(this.buttonRestart);
             this.Controls.Add(this.NewGame);
             this.Controls.Add(this.Tile13);
             this.Controls.Add(this.Tile14);
@@ -407,6 +425,7 @@
         private System.Windows.Forms.Label BestScore;
         private System.Windows.Forms.Label TimeShow;
         private System.Windows.Forms.Timer GameTime;
+        private System.Windows.Forms.Button buttonRestart;
     }
 }
 
