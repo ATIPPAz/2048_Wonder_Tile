@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using _2048Tile.Class;
 namespace _2048Tile
 {
     public partial class WonderTile : Form
@@ -54,8 +53,6 @@ namespace _2048Tile
         private void NewGame_Click(object sender, EventArgs e)
         {
             //ให้กระเบื้องทุกอันมีค่าเป็น 0 (" ว่างเปล่า ")
-            Board board = new Board();
-            board.start();
             for (int i = 1; i <= 16; i++)
             {
 
@@ -113,8 +110,6 @@ namespace _2048Tile
         void save()
         {
             //ให้กระเบื้องทุกอันมีค่าเป็น 0 (" ว่างเปล่า ")
-            Board board = new Board();
-            board.start();
             for (int i = 1; i <= 16; i++)
             {
                 Tile[i] = (Label)this.Controls.Find("tile" + i, true)[0];
