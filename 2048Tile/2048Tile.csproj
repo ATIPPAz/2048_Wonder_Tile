@@ -64,8 +64,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class\Board.cs" />
-    <Compile Include="Class\GameLogic.cs" />
     <Compile Include="GameForm.cs">
       <SubType>Form</SubType>
     </Compile>
