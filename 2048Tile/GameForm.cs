@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using _2048Tile.Class;
 namespace _2048Tile
 {
     public partial class WonderTile : Form
@@ -14,12 +13,6 @@ namespace _2048Tile
         public WonderTile()
         {
             InitializeComponent();
-            //สร้างแบบจำลองกระเบื้อง 16 อัน เพื่อนเทียบกับกระเบื้องจริง
-            for (int i = 1; i <= 16; i++)
-            {
-                Tile[i] = (Label)this.Controls.Find("tile" + i, true)[0];
-            }
-
         }
 
         //ปุ่มออกโปรแกรม
@@ -51,69 +44,34 @@ namespace _2048Tile
         {
             return rdRandom.Next(16) + 1;
         }
-        private void NewGame_Click(object sender, EventArgs e)
+        void GameStart()
         {
-            //ให้กระเบื้องทุกอันมีค่าเป็น 0 (" ว่างเปล่า ")
-            Board board = new Board();
-            board.start();
+            //สร้างแบบจำลองกระเบื้อง 16 อัน เพื่อนเทียบกับกระเบื้องจริง
             for (int i = 1; i <= 16; i++)
             {
-
-                if (i == 13)
-                {
-                    Tile[i] = (Label)this.Controls.Find("tile" + i, true)[0];
-                    Tile[i].Text = "2";
-                }
-                else if (i == 14)
-                {
-                    Tile[i] = (Label)this.Controls.Find("tile" + i, true)[0];
-                    Tile[i].Text = "2";
-                }
-                else if (i == 15)
-                {
-                    Tile[i] = (Label)this.Controls.Find("tile" + i, true)[0];
-                    Tile[i].Text = "8";
-                }
-                else if (i == 16)
-                {
-                    Tile[i] = (Label)this.Controls.Find("tile" + i, true)[0];
-                    Tile[i].Text = "4";
-                }
-                else if (i == 9)
-                {
-                    Tile[i] = (Label)this.Controls.Find("tile" + i, true)[0];
-                    Tile[i].Text = "4";
-
-                }
-                else if (i == 10)
-                {
-                    Tile[i] = (Label)this.Controls.Find("tile" + i, true)[0];
-                    Tile[i].Text = "8";
-                }
-                else if (i == 11)
-                {
-                    Tile[i] = (Label)this.Controls.Find("tile" + i, true)[0];
-                    Tile[i].Text = "2";
-                }
-                else if (i == 12)
-                {
-                    Tile[i] = (Label)this.Controls.Find("tile" + i, true)[0];
-                    Tile[i].Text = "2";
-                }
+                Tile[i] = (Label)this.Controls.Find("tile" + i, true)[0];
+                Tile[i].Text = "";
             }
+            buttonRestart.Hide();
             nTime = 0;
             GameTime.Start();
-            /* nValue = RandomValue();
-             nPosition = RandomPosition();
-             Tile[nPosition].Text = nValue.ToString();*/
-            ChangeBgColor();
-            NewGame.Visible = false;
+            NewGame.Hide();
+            for (int times = 1; times <= 2; times++)
+            {
+                nValue = RandomValue();
+                nPosition = RandomPosition();
+                Tile[nPosition].Text = nValue.ToString();
+                ChangeBgColor();
+            }
+        }
+        private void NewGame_Click(object sender, EventArgs e)
+        {
+            GameStart();
+            //ให้กระเบื้องทุกอันมีค่าเป็น 0 (" ว่างเปล่า ")
         }
         void save()
         {
             //ให้กระเบื้องทุกอันมีค่าเป็น 0 (" ว่างเปล่า ")
-            Board board = new Board();
-            board.start();
             for (int i = 1; i <= 16; i++)
             {
                 Tile[i] = (Label)this.Controls.Find("tile" + i, true)[0];
@@ -304,6 +262,7 @@ namespace _2048Tile
             RandomTile();
         }
 
+
         private void Down()
         {
             for (int i = 13; i <= 16; i++)
@@ -447,6 +406,7 @@ namespace _2048Tile
             if (bGameOver)
             {
                 MessageBox.Show("GameOver");
+                buttonRestart.Show();
             }
         }
         void ChangeBgColor()
